@@ -1,5 +1,6 @@
 import sys
 
+
 def main():
     if len(sys.argv) == 1:
         return
@@ -23,4 +24,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    

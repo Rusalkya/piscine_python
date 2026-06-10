@@ -1,5 +1,5 @@
 def NULL_not_found(object: any) -> int:
-#your code here
+    # your code here
     if object is None:
         print(f"Nothing: {object} {type(object)}")
 
@@ -20,4 +20,3 @@ def NULL_not_found(object: any) -> int:
         return 1
 
     return 0
-
