@@ -2,27 +2,24 @@ from load_image import ft_load
 import matplotlib.pyplot as plt
 
 
-def zoom_image(array):
+def main():
 
-    height, width = array.shape[0], array.shape[1]
-
-    zoom = array[
-        height // 4: 3 * height // 4,
-        width // 4: 3 * width // 4
-    ]
-
-    print(f"New shape after slicing: {zoom.shape}")
-
-    return zoom
+    try:
+        data = ft_load("animal.jpeg")
+        print(data)
+        zoomed = data[100:500, 450:850, 0:1]
+        print(f"New shape after licing: {zoomed.shape}")
+        print(zoomed)
+        plt.imshow(zoomed, cmap="gray")
+        plt.show()
+        return
+    except FileNotFoundError:
+        print("Error: the file was not found")
+        return
+    except Exception as e:
+        print("An unexpected error occurred:", e)
+        return
 
 
 if __name__ == "__main__":
-    img = ft_load("animal.jpeg")
-
-    if img is not None:
-        zoom = zoom_image(img)
-        print(zoom)
-        
-        # Display the zoomed image with matplotlib
-        plt.imshow(zoom, cmap='gray')
-        plt.show()
+    main()

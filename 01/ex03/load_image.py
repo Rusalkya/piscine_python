@@ -1,19 +1,25 @@
+"""Image loader module."""
+
 import numpy as np
 from PIL import Image
 
 
 def ft_load(path: str):
-
-    if not path.endswith((".jpg", ".jpeg")):
-        raise TypeError("Image's format must be a .jpg or .jpeg.")
-
+    """Load image and return numpy array."""
     try:
+        if not isinstance(path, str):
+            raise TypeError("path must be a string")
+
+        if not path.endswith((".jpg", ".jpeg")):
+            raise TypeError("image format must be jpg or jpeg")
+
         img = Image.open(path)
-    except Exception:
-        raise FileNotFoundError("Image doesn't exist.")
+        array = np.array(img)
 
-    array = np.array(img)
+        print("The shape of image is: ", array.shape)
+        print(array)
 
-    print(f"The shape of image is: {array.shape}")
+        return array
 
-    return array
+    finally:
+        pass
