@@ -1,19 +1,26 @@
+"""Image loader module."""
+
 import numpy as np
 from PIL import Image
 
 
 def ft_load(path: str):
+    """Load image, extract the square crop, and print it."""
+    if not isinstance(path, str):
+        raise TypeError("path must be a string")
 
     if not path.endswith((".jpg", ".jpeg")):
-        raise TypeError("Image's format must be a .jpg or .jpeg.")
+        raise TypeError("image format must be jpg or jpeg")
 
-    try:
-        img = Image.open(path)
-    except Exception:
-        raise FileNotFoundError("Image doesn't exist.")
-
+    img = Image.open(path)
     array = np.array(img)
 
-    print(f"The shape of image is: {array.shape}")
+    if array.ndim == 3:
+        cropped = array[100:500, 450:850, 0:1]
+    else:
+        cropped = array[100:500, 450:850]
 
-    return array
+    print(f"The shape of image is: {cropped.shape}")
+    print(cropped)
+
+    return cropped
